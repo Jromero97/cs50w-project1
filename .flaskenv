@@ -1,0 +1,5 @@
+FLASK_RUN="application.py"
+FLASK_DEBUG="1"
+DATABASE_URL="postgres://tgrhvaxpufzqan:ad2747794edcfc2a0e5f3e462fb4546d20a526170a3c8f1a11c52b10e571b7a4@ec2-18-233-83-165.compute-1.amazonaws.com:5432/ddtk3c6dt4ecct"
+SQLALCHEMY_DATABASE_URI="postgres://tgrhvaxpufzqan:ad2747794edcfc2a0e5f3e462fb4546d20a526170a3c8f1a11c52b10e571b7a4@ec2-18-233-83-165.compute-1.amazonaws.com:5432/ddtk3c6dt4ecct"
+SECRET_KEY="thisisaprojectforweb50"

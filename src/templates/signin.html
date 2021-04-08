@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container d-flex justify-content-center align-items-center py-5">
+    <div class="card" style="width: 400px">
+        <div class="card-body">
+            <h1 class="text-center">Sign In</h1>
+            <p>Look on the largest books database in the world</p>
+            <form action="/signin" method="post" class="pt-4">
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="password" placeholder="Password" type="password"/>
+                </div>
+                <button class="btn btn-primary w-100" type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}

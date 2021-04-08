@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row py-5">
+
+        <div class="card mb-3 w-100 shadow">
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    <img src="http://covers.openlibrary.org/b/isbn/{{book[0].isbn}}-M.jpg" alt="{{ book[0].title }}">
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book[0].title }}</h5>
+                        <p><b>Author: </b> {{ book[0].author }}</p>
+                        <p><b>ISBN: </b> {{ book[0].isbn }}</p>
+                        <p><b>Published: </b> {{ book[0].year }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+    </div>
+    <div class="row no-gutters">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card shadow">
+            <div class="card-header bg-warning">
+                <h4 class="card-title">Users Ratings</h4>
+                <span>Rate this book!</span>
+            </div>
+            <div class="card-body">
+                <div class="ratings">
+                <div class="row">
+
+                </div>
+            <!-- Rating Form -->
+            <form method="POST" class="form-border">
+                <div class="row">
+                    <div class="form-group col-auto">
+                        <label for="rating">Rating</label>
+                        <select id="rating" name="rating" class="form-control" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option selected value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="comment">Leave your comment</label>
+                        <textarea name="comment" id="comment" class="form-control" rows="1" required></textarea>
+                    </div>
+                    <div class="form-group col-auto d-flex align-items-flex-end">
+                        <button class="btn btn-success mt-4" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Users Rating list -->
+            <div id="users-ratings">
+                <h4>Reviews ({{ reviews | count }})</h4>
+                <hr>
+                {% for review in reviews %}
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ review.username }} said...</h6>
+                            <small class="badge badge-info">{{ review.time.strftime('%c') }}</small>
+                        </div>
+                        <p class="mb-1">{{ review.comment }}</p>
+                        <small>Rated: {{ review.rating }}</small>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <script type="text/javascript">
+        function reviewsCallback(result) {
+            alert(result.reviews.length);
+        }
+
+        const scriptTag = document.createElement('script');
+
+        scriptTag.src = "//www.goodreads.com/book/isbn/{{book[0].isbn}}?callback=reviewsCallback&format=json&user_id=133098126-juan-romero";
+        scriptTag.crossOrigin = ''
+        document.getElementsByTagName('head')[0].appendChild(scriptTag);
+    </script>
+{% endblock %}
